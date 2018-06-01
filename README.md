@@ -1,8 +1,11 @@
 # precios-poc-node
 Prueba de Concepto
 
+
+## Junar ETL
+
 ```
-# npm install -d
+# cd junar-etl && npm install -d
 ```
 
 next steps:
