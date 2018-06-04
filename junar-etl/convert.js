@@ -69,7 +69,7 @@ request({
 				if (required.indexOf(headers[k])>-1){
 					switch (true) {
 						case (headers[k] == 'ID'):
-							this_obj._id = body.result[i][k];
+							this_obj.custom_id = body.result[i][k];
 							break;
 						case (headers[k] == 'Última Actualización'):
 							this_obj[required_compat[k]] = new Date(body.result[i][k]);
@@ -101,7 +101,7 @@ request({
 var q = async.queue(function(task, callback) {
     request({
 		method: 'POST',
-		url: ELASTICSEARCH + INDEX + '/producto/' + task._id,
+		url: ELASTICSEARCH + INDEX + '/producto/' + task.custom_id,
 		json: true,
 		body: task
 	},function(response){
