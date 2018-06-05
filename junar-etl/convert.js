@@ -68,6 +68,9 @@ request({
 			for (var k=0; k<body.result[i].length; k++){
 				if (required.indexOf(headers[k])>-1){
 					switch (true) {
+            case (required_compat[k] == 'price_lt'):
+              this_obj.price_lt = Number(body.result[i][k]);
+              break;
 						case (headers[k] == 'ID'):
 							this_obj.custom_id = body.result[i][k];
 							break;
