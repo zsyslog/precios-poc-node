@@ -30,7 +30,7 @@ var parser = parse({delimiter: ','}, function (err, data) {
     for (k in data[i]){
       switch (true) {
         case (headers[k] == "price_lt" && data[i][k] !== ''):
-          this_obj.location[0] = Number(data[i][k]);
+          this_obj.price_lt = Number(data[i][k]);
           break;
         case (headers[k] == "latitude" && data[i][k] !== ''):
           this_obj.location[0] = Number(data[i][k]);
@@ -48,15 +48,16 @@ var parser = parse({delimiter: ','}, function (err, data) {
           this_obj[headers[k]] = data[i][k];
       }	
     }
-    request({
-      method: 'POST',
-      url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id + this_obj.data_info.product_type.replace(/ /g, ''),
-      json: true,
-      body: this_obj
-    },function(error, response, body){
-      console.log('ELASTICSEARCH:', body);
-      // callback();
-    });
+    console.log(this_obj);
+    // request({
+    //   method: 'POST',
+    //   url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id + this_obj.data_info.product_type.replace(/ /g, ''),
+    //   json: true,
+    //   body: this_obj
+    // },function(error, response, body){
+    //   console.log('ELASTICSEARCH:', body);
+    //   // callback();
+    // });
  }
 
 });
