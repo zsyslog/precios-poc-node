@@ -5,7 +5,8 @@ const DATA_INFO = {
   "source_name": "Comisión Nacional de Energía",
   "source_url": "http://datos.energiaabierta.cl/dataviews/242659/kerosene-en-linea/",
   "product": "Combustible",
-  "product_type": "Parafina"
+  "product_type": "Parafina",
+  "pricing_unit": "Pesos/lt"
 }
 const ELASTICSEARCH = 'http://localhost:9200/';
 const INDEX = 'precios';
@@ -20,7 +21,7 @@ const required = [
   'ID Región',
   'Región',
   'Distribuidor',
-  'Distribuidor Logo',
+  'Distribuidor Logo SVG Horizontal',
   'Kerosene $/L',
   'Latitud',
   'Longitud'
@@ -37,9 +38,9 @@ const required_compat = [
   'region',
   'Horario de Atención',
   'distributor',
-  'distributor_logo',
+  'Distribuidor Logo',
   'Distribuidor Logo SVG',
-  'Distribuidor Logo SVG Horizontal',
+  'distributor_logo',
   'price_lt',
   'Pago Efectivo',
   'Cheque',
@@ -74,22 +75,22 @@ request({
           if (required.indexOf(headers[k])>-1){
            switch (true) {
             case (required_compat[k] == 'price_lt'):
-            this_obj.price_lt = Number(body.result[i][k]);
-            break;
+              this_obj.price_lt = Number(body.result[i][k]);
+              break;
             case (headers[k] == 'ID'):
-            this_obj.custom_id = body.result[i][k];
-            break;
+              this_obj.custom_id = body.result[i][k];
+              break;
             case (headers[k] == 'Última Actualización'):
-            this_obj[required_compat[k]] = new Date(body.result[i][k]);
-            break;
+              this_obj[required_compat[k]] = new Date(body.result[i][k]);
+              break;
             case (headers[k] == "Latitud"):
-            this_obj.location[0] = Number(body.result[i][k]);
-            break;
+              this_obj.location[0] = Number(body.result[i][k]);
+              break;
             case (headers[k] ==  "Longitud"):
-            this_obj.location[1] = Number(body.result[i][k]);
-            break;
+              this_obj.location[1] = Number(body.result[i][k]);
+              break;
             default:
-            this_obj[String(required_compat[k])] = body.result[i][k];
+              this_obj[String(required_compat[k])] = body.result[i][k];
           }
         }
       }
@@ -109,12 +110,16 @@ request({
 var q = async.queue(function(task, callback) {
   request({
     method: 'POST',
-    url: ELASTICSEARCH + INDEX + '/producto/' + task.custom_id,
+    url: ELASTICSEARCH + INDEX + '/producto/' + task.custom_id + task.data_info.product_type,
     json: true,
     body: task
-  },function(response){
-    console.log('ELASTICSEARCH:', response);
-    callback();
+  },function(error, response, body){
+    if (error)
+      throw "ELASTICSEARCH ERR:" + error;
+    else {
+      console.log('ELASTICSEARCH:', body);
+      callback();  
+    }
   });
 }, 5);
 
