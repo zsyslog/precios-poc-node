@@ -48,16 +48,16 @@ var parser = parse({delimiter: ','}, function (err, data) {
           this_obj[headers[k]] = data[i][k];
       }	
     }
-    console.log(this_obj);
-    // request({
-    //   method: 'POST',
-    //   url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id + this_obj.data_info.product_type.replace(/ /g, ''),
-    //   json: true,
-    //   body: this_obj
-    // },function(error, response, body){
-    //   console.log('ELASTICSEARCH:', body);
-    //   // callback();
-    // });
+    // console.log(this_obj);
+    request({
+      method: 'POST',
+      url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id + this_obj.data_info.product_type.replace(/ /g, ''),
+      json: true,
+      body: this_obj
+    },function(error, response, body){
+      console.log('ELASTICSEARCH:', body);
+      // callback();
+    });
  }
 
 });
