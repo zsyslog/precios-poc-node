@@ -109,7 +109,6 @@ request({
             }
           }
         }
-
         indexObj(this_obj);
     }
   }
