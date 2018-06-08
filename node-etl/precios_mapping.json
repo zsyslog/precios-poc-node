@@ -1,5 +1,4 @@
 {
-    "mappings": {
       "producto": {
         "properties": {
           "canal": {
@@ -220,4 +219,4 @@
         }
       }
     }
-  }
+  

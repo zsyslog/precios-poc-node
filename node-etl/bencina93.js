@@ -1,3 +1,5 @@
+var config = require('./config');
+
 
 const API_KEY = 'fbf48e360b6f0c38ef13d5f5a6a4e88ec02093e1';
 const JUNAR_URL = "http://cne.cloudapi.junar.com/api/v2/datastreams/BENCI-EN-LINEA-V2-80280/data.ajson/?auth_key=";
@@ -8,8 +10,10 @@ const DATA_INFO = {
   "product_type": "Bencina 93",
   "pricing_unit": "Pesos/lt"
 }
-const ELASTICSEARCH = 'http://localhost:9200/';
-const INDEX = 'precios';
+
+const ELASTICSEARCH = config.elasticsearch.url;
+const INDEX = config.elasticsearch.index;
+
 const required = [
   'ID',
   'Última Actualización',
@@ -71,7 +75,7 @@ var async = require("async");
 console.log('starting...');
 
 request({
-  url: JUNAR_URL + API_KEY,
+  url: JUNAR_URL + config.junar_apikey,
   json: true
 }, function (error, response, body) {
 	var obj = [];

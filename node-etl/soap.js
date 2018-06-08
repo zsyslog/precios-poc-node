@@ -1,3 +1,8 @@
+if (process.argv[2] == undefined) {
+  console.error("falta argumento: Input CSV");
+  process.exit(-1);
+}
+
 const DATA_INFO = {
   // "source_name": "Comisión Nacional de Energía",
   // "source_url": "http://datos.energiaabierta.cl/dataviews/242658/bencina-en-linea/",
