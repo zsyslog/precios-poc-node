@@ -60,7 +60,6 @@ var parser = parse({delimiter: ','}, function (err, data) {
           this_obj.data_info.source_url = data[i][7];
           break;
         case (headers[k] == "last_updated" && data[i][k] !== ''):
-        	console.log("DATE:", data[i][k]);
           this_obj.last_updated = new Date(data[i][k]).toISOString();
           break;
         default:
@@ -68,7 +67,8 @@ var parser = parse({delimiter: ','}, function (err, data) {
       }	
     }
     // console.log(this_obj);
-    request({
+    q.push(this_obj);
+    /* request({
       method: 'POST',
       url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id,
       json: true,
@@ -76,7 +76,7 @@ var parser = parse({delimiter: ','}, function (err, data) {
     },function(error, response, body){
       console.log('ELASTICSEARCH:', body);
       // callback();
-    });
+    });*/
  }
 
 });
@@ -110,7 +110,7 @@ var q = async.queue(function(task, callback) {
     console.log('ELASTICSEARCH:', body);
     callback();
   });
-}, 1);
+}, 20);
 
 // assign a callback
 q.drain = function() {
