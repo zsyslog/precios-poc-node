@@ -50,10 +50,6 @@ var parser = parse({delimiter: ','}, function (err, data) {
         case (headers[k] == "price_lt" && data[i][k] !== ''):
           this_obj.price_lt = Number(data[i][k]);
           break;
-        case (headers[k] == "last_updated" && data[i][k] !== ''):
-          // this_obj.last_updated = Date(data[i][k]);
-          this_obj.last_updated = data[i][k];
-          break;
         case (headers[k] == "presentacion" && data[i][k] !== ''):
           this_obj.data_info.pricing_unit = "Pesos/" + data[i][k];
           break;
@@ -61,20 +57,24 @@ var parser = parse({delimiter: ','}, function (err, data) {
           this_obj.data_info.source_name = data[i][1];
           this_obj.data_info.source_url = data[i][7];
           break;
+        case (headers[k] == "last_updated" && data[i][k] !== ''):
+        	console.log("DATE:", data[i][k]);
+          this_obj.last_updated = new Date(data[i][k]).toISOString();
+          break;
         default:
           this_obj[headers[k]] = data[i][k];
       }	
     }
-    // console.log(this_obj);
-    request({
-      method: 'POST',
-      url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id,
-      json: true,
-      body: this_obj
-    },function(error, response, body){
-      console.log('ELASTICSEARCH:', body);
-      // callback();
-    });
+    console.log(this_obj);
+    // request({
+    //   method: 'POST',
+    //   url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id,
+    //   json: true,
+    //   body: this_obj
+    // },function(error, response, body){
+    //   console.log('ELASTICSEARCH:', body);
+    //   // callback();
+    // });
  }
 
 });
