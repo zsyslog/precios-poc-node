@@ -36,7 +36,7 @@ var parser = parse({delimiter: ','}, function (err, data) {
     var this_obj = {};
     this_obj.data_info = DATA_INFO;
     this_obj.location = [null,null];
-    var cid_str = "" + data[i][1] + data[i][2] + data[i][3] + data[i][4] + data[i][5];
+    var cid_str = "" + data[i].toString();
     this_obj.custom_id = crypto.createHash('md5').update(cid_str).digest("hex");
     // this_obj.last_updated = new Date(2018,01,01);
     for (k in data[i]){
