@@ -3,6 +3,8 @@ if (process.argv[2] == undefined) {
   process.exit(-1);
 }
 
+var config = require('./config');
+
 const DATA_INFO = {
   // "source_name": "Comisión Nacional de Energía",
   // "source_url": "http://datos.energiaabierta.cl/dataviews/242658/bencina-en-linea/",
@@ -10,8 +12,8 @@ const DATA_INFO = {
   "product_type": "Medicamentos"
   // "pricing_unit": "Pesos/PrimaAnual"
 }
-const ELASTICSEARCH = 'http://localhost:9200/';
-const INDEX = 'precios';
+const ELASTICSEARCH = config.elasticsearch.url;
+const INDEX = config.elasticsearch.index;
 
 var fs = require('fs');
 var parse = require('csv-parse');
@@ -28,8 +30,8 @@ var parser = parse({delimiter: ','}, function (err, data) {
 	const headers = data[0];
 
 
-  for (i=1; i<10; i++) {
-  // for (i=1; i<data.length; i++) {
+  // for (i=1; i<10; i++) {
+  for (i=1; i<data.length; i++) {
   	// console.log(data[i]);
     var this_obj = {};
     this_obj.data_info = DATA_INFO;
@@ -65,16 +67,16 @@ var parser = parse({delimiter: ','}, function (err, data) {
           this_obj[headers[k]] = data[i][k];
       }	
     }
-    console.log(this_obj);
-    // request({
-    //   method: 'POST',
-    //   url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id,
-    //   json: true,
-    //   body: this_obj
-    // },function(error, response, body){
-    //   console.log('ELASTICSEARCH:', body);
-    //   // callback();
-    // });
+    // console.log(this_obj);
+    request({
+      method: 'POST',
+      url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id,
+      json: true,
+      body: this_obj
+    },function(error, response, body){
+      console.log('ELASTICSEARCH:', body);
+      // callback();
+    });
  }
 
 });
