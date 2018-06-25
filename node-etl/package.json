@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.6.1",
+    "crypto": "^1.0.1",
     "csv-parse": "^2.4.1",
     "request": "^2.87.0"
   }

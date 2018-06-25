@@ -17,6 +17,7 @@ var fs = require('fs');
 var parse = require('csv-parse');
 var request = require("request");
 var async = require("async");
+var crypto = require('crypto');
 
 console.log("Processing: ", process.argv[2]);
 
@@ -27,10 +28,14 @@ var parser = parse({delimiter: ','}, function (err, data) {
 	const headers = data[0];
 
 
-  for (i=1; i<data.length; i++) {
+  for (i=1; i<10; i++) {
+  // for (i=1; i<data.length; i++) {
+  	// console.log(data[i]);
     var this_obj = {};
     this_obj.data_info = DATA_INFO;
     this_obj.location = [null,null];
+    var cid_str = "" + data[i][1] + data[i][2] + data[i][3] + data[i][4] + data[i][5];
+    this_obj.custom_id = crypto.createHash('md5').update(cid_str).digest("hex");
     // this_obj.last_updated = new Date(2018,01,01);
     for (k in data[i]){
       switch (true) {
@@ -63,7 +68,7 @@ var parser = parse({delimiter: ','}, function (err, data) {
     // console.log(this_obj);
     request({
       method: 'POST',
-      url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id + this_obj.data_info.product_type.replace(/ /g, ''),
+      url: ELASTICSEARCH + INDEX + '/producto/' + this_obj.custom_id,
       json: true,
       body: this_obj
     },function(error, response, body){
