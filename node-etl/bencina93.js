@@ -85,11 +85,13 @@ request({
     const headers = body.result[0];
         // console.log(headers);
         // return;
-        for (var i=1; i<body.result.length; i++) {
-        // for (var i=1; i<50; i++) {
+        // for (var i=1; i<body.result.length; i++) {
+        for (var i=1; i<10; i++) {
          var this_obj = {};
          this_obj.data_info = DATA_INFO;
-         this_obj.location = [];
+         this_obj.location = {};
+         this_obj.location.lat = 0;
+         this_obj.location.lon = 0;
          for (var k=0; k<body.result[i].length; k++){
           if (required.indexOf(headers[k])>-1){
             switch (true) {
@@ -103,10 +105,13 @@ request({
                 this_obj[required_compat[k]] = new Date(body.result[i][k]);
                 break;
               case (headers[k] == "Latitud"):
-                this_obj.location[0] = Number(body.result[i][k]);
+                // this_obj.location.lat = Number(body.result[i][k]);
+                console.log(body.result[i][k]);
+                this_obj.location.lat = body.result[i][k];
                 break;
               case (headers[k] ==  "Longitud"):
-                this_obj.location[1] = Number(body.result[i][k]);
+                // this_obj.location.lon = Number(body.result[i][k]);
+                this_obj.location.lon = body.result[i][k];
                 break;
               default:
                 this_obj[String(required_compat[k])] = body.result[i][k];
