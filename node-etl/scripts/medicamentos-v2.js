@@ -26,14 +26,13 @@ var parser = parse({delimiter: ','}, function (err, data) {
 
 	const headers = data[0];
 
-  for (i=1; i<10; i++) {
-  // for (i=1; i<data.length; i++) {
+  // for (i=1; i<10; i++) {
+  for (i=1; i<data.length; i++) {
   	// console.log(data[i]);
     var this_obj = {};
     this_obj.data_info = DATA_INFO;
     var cid_str = "" + data[i].toString();
-    this_obj.custom_id = crypto.createHash('md5').update(cid_str).digest("hex");
-    console.log(data[i]);
+    // this_obj.custom_id = crypto.createHash('md5').update(cid_str).digest("hex");
     this_obj.pricing_unit = "Pesos/" + data[i][headers.indexOf('cantidad')] + " " + data[i][headers.indexOf('unidad')];
     // this_obj.last_updated = new Date(2018,01,01);
     for (k in data[i]){
@@ -75,7 +74,7 @@ function indexObj(task) {
 var q = async.queue(function(task, callback) {
   request({
     method: 'POST',
-    url: ELASTICSEARCH + INDEX + '/producto/' + task.custom_id + task.commerce.replace(" ",""),
+    url: ELASTICSEARCH + INDEX + '/producto/' + task.custom_id,
     json: true,
     body: task
   },function(error, response, body){
