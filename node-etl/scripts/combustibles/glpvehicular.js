@@ -86,7 +86,7 @@ request({
         // for (var i=1; i<50; i++) {
          var this_obj = {};
          this_obj.data_info = DATA_INFO;
-         this_obj.location = [];
+         this_obj.location = [null,null];
          for (var k=0; k<body.result[i].length; k++){
           if (required.indexOf(headers[k])>-1){
             switch (true) {

@@ -1,13 +1,14 @@
 
 var config = require('./config');
 
+
 const JUNAR_URL = "http://cne.cloudapi.junar.com/api/v2/datastreams/BENCI-EN-LINEA-V2-80280/data.ajson/?auth_key=";
 const DATA_INFO = {
   "source_name": "Comisión Nacional de Energía",
   "source_url": "http://datos.energiaabierta.cl/dataviews/242658/bencina-en-linea/",
   "product": "Combustible",
-  "product_type": "GNC",
-  "pricing_unit": "Pesos/m3"
+  "product_type": "Diesel",
+  "pricing_unit": "Pesos/lt"
 }
 const ELASTICSEARCH = config.elasticsearch.url;
 const INDEX = config.elasticsearch.index;
@@ -25,10 +26,10 @@ const required = [
   'Distribuidor Logo SVG Horizontal',
   // 'Gasolina 93 $/L',
   // 'Gasolina 97 $/L',
-  // 'Petróleo Diesel $/L',
+  'Petróleo Diesel $/L',
   // 'Gasolina 95 $/L',
   // 'GLP Vehicular $/m3',
-  'GNC $/m3',
+  // 'GNC $/m3',
   'Latitud',
   'Longitud'
 ];
@@ -49,10 +50,10 @@ const required_compat = [
   'distributor_logo',
   'price_lt_93',
   'price_lt_97',
-  'price_lt_diesel',
-  'price_lt_95',
-  'price_lt_glp',
   'price_lt',
+  'price_lt_95',
+  'price_lt_glpv',
+  'price_m3_gnc',
   'latitude',
   'longitude',
   'Tienda',
@@ -86,7 +87,7 @@ request({
         // for (var i=1; i<50; i++) {
          var this_obj = {};
          this_obj.data_info = DATA_INFO;
-         this_obj.location = [];
+         this_obj.location = [null,null];
          for (var k=0; k<body.result[i].length; k++){
           if (required.indexOf(headers[k])>-1){
             switch (true) {

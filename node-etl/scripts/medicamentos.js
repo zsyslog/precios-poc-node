@@ -6,11 +6,8 @@ if (process.argv[2] == undefined) {
 var config = require('./config');
 
 const DATA_INFO = {
-  // "source_name": "Comisión Nacional de Energía",
-  // "source_url": "http://datos.energiaabierta.cl/dataviews/242658/bencina-en-linea/",
   "product": "Medicina",
   "product_type": "Medicamentos"
-  // "pricing_unit": "Pesos/PrimaAnual"
 }
 const ELASTICSEARCH = config.elasticsearch.url;
 const INDEX = config.elasticsearch.index;

@@ -4,8 +4,6 @@ if (process.argv[2] == undefined) {
 }
 
 const DATA_INFO = {
-  // "source_name": "Comisión Nacional de Energía",
-  // "source_url": "http://datos.energiaabierta.cl/dataviews/242658/bencina-en-linea/",
   "product": "Seguros",
   "product_type": "SOAP",
   "pricing_unit": "Pesos/PrimaAnual"
@@ -25,7 +23,6 @@ var inputFile=process.argv[2];
 var parser = parse({delimiter: ','}, function (err, data) {
 
 	const headers = data[0];
-
 
   for (i=1; i<data.length; i++) {
     var this_obj = {};

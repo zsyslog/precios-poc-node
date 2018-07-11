@@ -1,0 +1,324 @@
+{
+  "precios" : {
+    "mappings" : {
+      "producto" : {
+        "properties" : {
+          "address" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "brand" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "canal" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "city" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            },
+            "fielddata" : true
+          },
+          "commerce" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            },
+            "fielddata" : true
+          },
+          "custom_id" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "data" : {
+            "properties" : {
+              "city" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "commerce" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "distributor" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "last_updated" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "region" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "street_name" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "street_nr" : {
+                "type" : "text",
+                "fielddata" : true
+              }
+            }
+          },
+          "data_info" : {
+            "properties" : {
+              "city" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "commerce" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "distributor" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "last_updated" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "price_lt" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "pricing_unit" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                },
+                "fielddata" : true
+              },
+              "product" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                },
+                "fielddata" : true
+              },
+              "product_type" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                },
+                "fielddata" : true
+              },
+              "region" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "source_name" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                },
+                "fielddata" : true
+              },
+              "source_url" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                },
+                "fielddata" : true
+              },
+              "street_name" : {
+                "type" : "text",
+                "fielddata" : true
+              },
+              "street_nr" : {
+                "type" : "text",
+                "fielddata" : true
+              }
+            }
+          },
+          "data_source" : {
+            "properties" : {
+              "name" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                }
+              },
+              "url" : {
+                "type" : "text",
+                "fields" : {
+                  "keyword" : {
+                    "type" : "keyword",
+                    "ignore_above" : 256
+                  }
+                }
+              }
+            }
+          },
+          "distributor" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              },
+              "name" : {
+                "type" : "text"
+              },
+              "raw" : {
+                "type" : "keyword"
+              }
+            },
+            "fielddata" : true
+          },
+          "distributor_logo" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "dosis" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "id_city" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "id_region" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "last_updated" : {
+            "type" : "date"
+          },
+          "location" : {
+            "type" : "geo_point"
+          },
+          "name" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "packaging" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "price_lt" : {
+            "type" : "long"
+          },
+          "product_type" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            }
+          },
+          "region" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            },
+            "fielddata" : true
+          },
+          "street_name" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            },
+            "fielddata" : true
+          },
+          "street_nr" : {
+            "type" : "text",
+            "fields" : {
+              "keyword" : {
+                "type" : "keyword",
+                "ignore_above" : 256
+              }
+            },
+            "fielddata" : true
+          }
+        }
+      }
+    }
+  }
+}
