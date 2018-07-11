@@ -3,7 +3,7 @@ if (process.argv[2] == undefined) {
   process.exit(-1);
 }
 
-var config = require('./config');
+var config = require('../config');
 
 const DATA_INFO = {
   "product": "Medicina",

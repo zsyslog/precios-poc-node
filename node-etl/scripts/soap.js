@@ -3,13 +3,16 @@ if (process.argv[2] == undefined) {
   process.exit(-1);
 }
 
+var config = require('../config');
+
 const DATA_INFO = {
   "product": "Seguros",
   "product_type": "SOAP",
   "pricing_unit": "Pesos/PrimaAnual"
 }
-const ELASTICSEARCH = 'http://localhost:9200/';
-const INDEX = 'precios';
+
+const ELASTICSEARCH = config.elasticsearch.url;
+const INDEX = config.elasticsearch.index;
 
 var fs = require('fs');
 var parse = require('csv-parse');

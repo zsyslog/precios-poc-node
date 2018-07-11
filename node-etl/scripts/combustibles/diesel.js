@@ -1,5 +1,4 @@
-
-var config = require('./config');
+var config = require('../../config');
 
 
 const JUNAR_URL = "http://cne.cloudapi.junar.com/api/v2/datastreams/BENCI-EN-LINEA-V2-80280/data.ajson/?auth_key=";

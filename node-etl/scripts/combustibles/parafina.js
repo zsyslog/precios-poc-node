@@ -1,3 +1,4 @@
+var config = require('../../config');
 
 const API_KEY = 'fbf48e360b6f0c38ef13d5f5a6a4e88ec02093e1';
 const JUNAR_CALEF_URL = "http://cne.cloudapi.junar.com/api/v2/datastreams/CALEF-EN-LINEA-API-V3/data.ajson/?auth_key=";

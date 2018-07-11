@@ -1,4 +1,4 @@
-var config = require('./config');
+var config = require('../../config');
 
 
 const API_KEY = 'fbf48e360b6f0c38ef13d5f5a6a4e88ec02093e1';
@@ -115,6 +115,7 @@ request({
             }
           }
         }
+        // console.log(this_obj);
         indexObj(this_obj);
     }
   }
@@ -123,7 +124,7 @@ request({
 function indexObj(task) {
   
   // if (Number(task.price_lt) > 0) 
-    // console.log(task);
+    console.log(task);
   if (Number(task.price_lt) > 0) {
     // console.log(task);
     q.push(task, function(err) {
@@ -138,13 +139,17 @@ function indexObj(task) {
 
 // Async queue
 var q = async.queue(function(task, callback) {
+  console.log(ELASTICSEARCH + INDEX + '/producto/' + task.custom_id + task.data_info.product_type.replace(" ",""));
   request({
     method: 'POST',
     url: ELASTICSEARCH + INDEX + '/producto/' + task.custom_id + task.data_info.product_type.replace(" ",""),
     json: true,
     body: task
   },function(error, response, body){
-    console.log('ELASTICSEARCH:', body);
+    if (error)
+      throw error;
+    else 
+      console.log('ELASTICSEARCH:', body);
     callback();
   });
 }, 1);
