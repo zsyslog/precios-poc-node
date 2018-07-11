@@ -1,0 +1,20 @@
+{
+  "name": "csv-capture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.1",
+    "co": "^4.6.0",
+    "csv-headers": "^1.0.0",
+    "csv-parse": "^2.5.0",
+    "leftpad": "0.0.1",
+    "lodash": "^4.17.10",
+    "mysql": "^2.15.0"
+  }
+}
