@@ -34,7 +34,7 @@ request({
         // for (var i=1; i<10; i++) {
           var this_obj = body.result[i]
           this_obj.data_info = DATA_INFO;
-          this_obj.location = [body.result[i].local_lat,body.result[i].local_lng];
+          this_obj.location = [Number(body.result[i].local_lat),Number(body.result[i].local_lng)];
           var cid_str = this_obj.location.toString();
           this_obj.custom_id = crypto.createHash('md5').update(cid_str).digest("hex");
           delete this_obj.local_lat;
