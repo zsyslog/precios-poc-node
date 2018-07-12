@@ -61,7 +61,7 @@ function indexObj(task) {
 var q = async.queue(function(task, callback) {
   request({
     method: 'POST',
-    url: ELASTICSEARCH + INDEX + '/locales/' + task.custom_id,
+    url: ELASTICSEARCH + INDEX + '/local/' + task.custom_id,
     json: true,
     body: task
   },function(error, response, body){
