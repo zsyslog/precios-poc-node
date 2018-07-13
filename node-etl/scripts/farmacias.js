@@ -33,7 +33,8 @@ request({
         for (var i=1; i<body.result.length; i++) {
         // for (var i=1; i<5; i++) {
           var this_obj = body.result[i];
-          this_obj.commerce = "FARMACIA " + body.result[i].local_nombre;
+          console.log(this_obj.local_nombre.toLowerCase().indexOf("farmacia"));
+          this_obj.commerce = this_obj.local_nombre.toLowerCase().indexOf("farmacia ") === -1 ? "FARMACIA " + this_obj.local_nombre : body.result[i].local_nombre;
           this_obj.data_info = DATA_INFO;
           this_obj.location = [Number(body.result[i].local_lat),Number(body.result[i].local_lng)];
           var cid_str = this_obj.location.toString();
