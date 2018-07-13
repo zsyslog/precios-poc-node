@@ -33,7 +33,7 @@ request({
         // for (var i=1; i<body.result.length; i++) {
         for (var i=1; i<5; i++) {
           var this_obj = body.result[i];
-          var this_obj.commerce = "FARMACIA " + body.result[i].local_nombre;
+          this_obj.commerce = "FARMACIA " + body.result[i].local_nombre;
           this_obj.data_info = DATA_INFO;
           this_obj.location = [Number(body.result[i].local_lat),Number(body.result[i].local_lng)];
           var cid_str = this_obj.location.toString();
