@@ -18,7 +18,7 @@ var crypto = require('crypto');
 console.log('starting...');
 
 request({
-  url: FARMANET_URL,local_nombre
+  url: FARMANET_URL,
   json: true
 }, function (error, response, body) {
   body.result = body;
