@@ -30,8 +30,8 @@ request({
     // const headers = body.result[0];
         // console.log(headers);
         // return;
-        // for (var i=1; i<body.result.length; i++) {
-        for (var i=1; i<5; i++) {
+        for (var i=1; i<body.result.length; i++) {
+        // for (var i=1; i<5; i++) {
           var this_obj = body.result[i];
           this_obj.commerce = "FARMACIA " + body.result[i].local_nombre;
           this_obj.data_info = DATA_INFO;
